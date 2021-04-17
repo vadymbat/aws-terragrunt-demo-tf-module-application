@@ -1,0 +1,17 @@
+dist: xenial
+language: bash
+
+services:
+  - docker
+
+before_install:
+  - docker build -f .devcontainer/Dockerfile -t tf_tools  --build-arg VARIANT=focal --build-arg TF_VERSION=0.14.8 --build-arg TG_VERSION=v0.28.24 .devcontainer
+
+jobs:
+  include:
+    - stage: pre-commit # When a Pull Request is created - Validate our plan
+      script: docker run --rm -it -v$(pwd):/app:ro --workdir /app tf_tools pre-commit run -a
+
+# branches:
+#   only:
+#     - master
