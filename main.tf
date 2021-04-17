@@ -1,3 +1,7 @@
+terraform {
+  backend "s3" {}
+}
+
 resource "aws_api_gateway_rest_api" "apigateway_announcement_app" {
   name = "${var.resource_prefix}-apigw-announcement-api"
   body = templatefile("${path.module}/templates/swagger.yaml", local.lambda_integration_uris)
