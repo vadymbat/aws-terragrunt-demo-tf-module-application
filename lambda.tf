@@ -16,7 +16,7 @@ module "aws_lambda_create_announcement" {
   source = "./modules/aws_lambda"
 
   # iam configuration
-  role_name            = "CreateAnnouncementLambdaRole"
+  role_name            = "${var.resource_prefix}-role-CreateAnnouncementLambdaRole"
   aws_region           = var.aws_region
   sam_policies         = ["DynamoDBCrudPolicy"]
   dynamodb_table_names = [aws_dynamodb_table.announcements.id]
