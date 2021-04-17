@@ -3,39 +3,39 @@ variable "aws_region" {
 }
 
 variable "default_tags" {
-    type = map(string)
-    default = {}
+  type    = map(string)
+  default = {}
 }
 
 ### Lambda configuration start ###
 variable "lambda_name" {
-  type = string
+  type        = string
   description = "The name of a lambda function"
 }
 
 variable "lambda_env_variables" {
-  type = map(string)
+  type        = map(string)
   description = "(optional) The environment variables available inside the lambda function"
-  default = {}
+  default     = {}
 }
 
 variable "lambda_runtime" {
-  type = string
+  type        = string
   description = "The runtime for the lambda"
 }
 
 variable "lambda_handler" {
-  type = string
+  type        = string
   description = "Entrypoint method in the lambda"
 }
 
 variable "lambda_artifacts_bucket" {
-  type = string
+  type        = string
   description = "S3 bucket where artifact is located"
 }
 
 variable "lambda_artifacts_key" {
-  type = string
+  type        = string
   description = "S3 bucket key of the artifact"
 }
 ### Lambda configuration end ###
@@ -66,7 +66,7 @@ variable "custom_policies" {
 }
 
 variable "role_name" {
-  type = string
+  type        = string
   description = "Lambda role name"
 }
 ### IAM role configuration end ###

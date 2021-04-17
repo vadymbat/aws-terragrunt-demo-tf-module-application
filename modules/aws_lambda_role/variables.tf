@@ -5,7 +5,6 @@ variable "aws_partition" {
 }
 
 variable "aws_region" {
-  default = "eu-central-1"
 }
 
 variable "dynamodb_table_names" {

@@ -1,13 +1,13 @@
 variable "default_tags" {
   type = map(string)
   default = {
-    module = "aws-terragrunt-demo-tf-module-application"
+    module      = "aws-terragrunt-demo-tf-module-application"
     "ManagedBy" = "terraform"
   }
 }
 
 variable "tags" {
-  type = map(string)
+  type    = map(string)
   default = {}
 }
 
