@@ -18,8 +18,7 @@ variable "iam_path" {
   default     = "/"
 }
 variable "role_name" {
-  type    = string
-  default = ""
+  type = string
 }
 
 variable "sam_policies" {
