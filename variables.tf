@@ -19,9 +19,3 @@ variable "service_name" {
   type        = string
   description = "Application name wich will added to resources names"
 }
-
-variable "lambda_artifact_name" {
-  type        = string
-  description = "The s3 bucket where"
-  default     = "announcement-app.zip"
-}

@@ -1,15 +1,15 @@
 data "archive_file" "lambda_package" {
   type        = "zip"
   source_dir  = "${path.module}/src"
-  output_path = "${path.module}/${var.lambda_artifact_name}.zip"
+  output_path = "${path.module}/${var.service_name}.zip"
 }
 
 resource "aws_s3_bucket_object" "lambda_artifact" {
   bucket = var.lambda_artifact_s3_bucket
-  key    = "artifacts/${var.lambda_artifact_name}.zip"
-  source = "${path.module}/${var.lambda_artifact_name}.zip"
+  key    = "artifacts/${var.service_name}.zip"
+  source = "${path.module}/${var.service_name}.zip"
 
-  etag = archive_file.lambda_package.output_md5
+  etag = data.archive_file.lambda_package.output_md5
 }
 
 module "aws_lambda_create_announcement" {
@@ -19,7 +19,7 @@ module "aws_lambda_create_announcement" {
   role_name            = "CreateAnnouncementLambdaRole"
   aws_region           = var.aws_region
   sam_policies         = ["DynamoDBCrudPolicy"]
-  dynamodb_table_names = [var.dynamodb_announcements_table_name]
+  dynamodb_table_names = [aws_dynamodb_table.announcements.id]
 
   # lambda configuration
   lambda_name             = "${var.resource_prefix}-lambda-create-announcement"
@@ -28,7 +28,7 @@ module "aws_lambda_create_announcement" {
   lambda_runtime          = "python3.7"
   lambda_handler          = "handler.create_announcement"
   lambda_env_variables = {
-    "ANNOUNCEMENT_TABLE_NAME" = var.dynamodb_announcements_table_name,
+    "ANNOUNCEMENT_TABLE_NAME" = aws_dynamodb_table.announcements.id
     "LOG_LEVEL"               = var.lambda_log_level
   }
   tags = merge(var.default_tags, var.tags)
@@ -41,7 +41,7 @@ module "aws_lambda_list_announcements" {
   role_name            = "${var.resource_prefix}-role-ListAnnouncementsLambdaRole"
   aws_region           = var.aws_region
   sam_policies         = ["DynamoDBCrudPolicy"]
-  dynamodb_table_names = [var.dynamodb_announcements_table_name]
+  dynamodb_table_names = [aws_dynamodb_table.announcements.id]
 
   # lambda configuration
   lambda_name             = "${var.resource_prefix}-list-announcements"
@@ -50,7 +50,7 @@ module "aws_lambda_list_announcements" {
   lambda_runtime          = "python3.7"
   lambda_handler          = "handler.list_announcements"
   lambda_env_variables = {
-    "ANNOUNCEMENT_TABLE_NAME" = var.dynamodb_announcements_table_name,
+    "ANNOUNCEMENT_TABLE_NAME" = aws_dynamodb_table.announcements.id
     "LOG_LEVEL"               = var.lambda_log_level
   }
   tags = merge(var.default_tags, var.tags)

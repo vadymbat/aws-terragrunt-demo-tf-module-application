@@ -1,6 +1,6 @@
 resource "aws_api_gateway_rest_api" "apigateway_announcement_app" {
   name = "${var.resource_prefix}-apigw-announcement-api"
-  body = templatefile("./templates/swagger.yaml", local.lambda_integration_uris)
+  body = templatefile("${path.module}/templates/swagger.yaml", local.lambda_integration_uris)
   tags = merge(var.default_tags, var.tags)
 }
 
@@ -8,7 +8,7 @@ resource "aws_api_gateway_deployment" "apigateway_deployment" {
   rest_api_id = aws_api_gateway_rest_api.apigateway_announcement_app.id
   stage_name  = var.rest_api_stage
   variables = {
-    apispec_hash = filesha1("./templates/swagger.yaml")
+    apispec_hash = filesha1("${path.module}/templates/swagger.yaml")
   }
   lifecycle {
     create_before_destroy = true

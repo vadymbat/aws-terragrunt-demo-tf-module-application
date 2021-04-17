@@ -2,7 +2,7 @@ variable "aws_region" {
   default = "eu-central-1"
 }
 
-variable "default_tags" {
+variable "tags" {
   type    = map(string)
   default = {}
 }

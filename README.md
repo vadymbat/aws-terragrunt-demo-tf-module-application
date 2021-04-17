@@ -1,5 +1,7 @@
 # aws-terragrunt-demo-tf-module-application
 
+More details about the application is available by the [link](https://github.com/vadymbat/aws-serverless-announcement-microservice).
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
@@ -42,7 +44,6 @@
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | n/a | `any` | n/a | yes |
 | <a name="input_default_tags"></a> [default\_tags](#input\_default\_tags) | n/a | `map(string)` | <pre>{<br>  "ManagedBy": "terraform",<br>  "module": "aws-terragrunt-demo-tf-module-application"<br>}</pre> | no |
 | <a name="input_dynamodb_announcements_table_name"></a> [dynamodb\_announcements\_table\_name](#input\_dynamodb\_announcements\_table\_name) | n/a | `string` | `"announcements-table"` | no |
-| <a name="input_lambda_artifact_name"></a> [lambda\_artifact\_name](#input\_lambda\_artifact\_name) | The s3 bucket where | `string` | `"announcement-app.zip"` | no |
 | <a name="input_lambda_artifact_s3_bucket"></a> [lambda\_artifact\_s3\_bucket](#input\_lambda\_artifact\_s3\_bucket) | The s3 bucket for artifacts | `string` | n/a | yes |
 | <a name="input_lambda_log_level"></a> [lambda\_log\_level](#input\_lambda\_log\_level) | n/a | `string` | `"DEBUG"` | no |
 | <a name="input_resource_prefix"></a> [resource\_prefix](#input\_resource\_prefix) | Prefix for aws resources | `any` | n/a | yes |
