@@ -1,6 +1,6 @@
 # aws-terragrunt-demo-tf-module-application
 
-[![Build Status](https://travis-ci.com/vadymbat/aws-terragrunt-demo-tf-module-application.svg?branch=main)](https://travis-ci.com/vadymbat/aws-terragrunt-demo-tf-module-application)
+[![Build Status](https://app.travis-ci.com/vadymbat/aws-terragrunt-demo-tf-module-application.svg?branch=main)](https://app.travis-ci.com/github/vadymbat/aws-terragrunt-demo-tf-module-application)
 
 More details about the application is available by the [link](https://github.com/vadymbat/aws-serverless-announcement-microservice).
 
